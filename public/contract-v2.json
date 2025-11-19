@@ -1,10 +1,10 @@
 {
   "source": {
-    "hash": "0x1235599b6acc440b9d580bb79689d3822a17a900d1ec18aaecfb1bddb4eb8d2b",
+    "hash": "0x66089778f4108448f840016a876cca98ed49a27c4f01f3c12184a476b4690177",
     "language": "ink! 4.3.0",
     "compiler": "rustc 1.91.1",
     "build_info": {
-      "build_mode": "Debug",
+      "build_mode": "Release",
       "cargo_contract_version": "3.2.0",
       "rust_toolchain": "stable-x86_64-pc-windows-msvc",
       "wasm_opt_settings": {
@@ -69,13 +69,13 @@
         "displayName": [
           "ChainExtension"
         ],
-        "type": 21
+        "type": 23
       },
       "hash": {
         "displayName": [
           "Hash"
         ],
-        "type": 20
+        "type": 22
       },
       "maxEventTopics": 4,
       "timestamp": {
@@ -285,7 +285,7 @@
           {
             "docs": [],
             "indexed": false,
-            "label": "owner_fee",
+            "label": "jackpot_contribution",
             "type": {
               "displayName": [
                 "Balance"
@@ -296,12 +296,12 @@
           {
             "docs": [],
             "indexed": false,
-            "label": "jackpot_contribution",
+            "label": "streak",
             "type": {
               "displayName": [
-                "Balance"
+                "u32"
               ],
-              "type": 0
+              "type": 1
             }
           }
         ],
@@ -327,6 +327,17 @@
             "docs": [],
             "indexed": false,
             "label": "amount",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "owner_fee",
             "type": {
               "displayName": [
                 "Balance"
@@ -409,8 +420,9 @@
         "docs": [
           " --- GAMIFICATION ---",
           " Sends a tip and enters the jackpot game.",
-          " A portion of the tip goes to the jackpot, another to the owner, and the rest to the recipient.",
-          " The tipper has a chance to win the entire jackpot."
+          " 1% of the tip goes to the jackpot.",
+          " Consecutive plays within 10 minutes increase winning chance (Streak).",
+          " Owner takes 10% cut ONLY if jackpot is won."
         ],
         "label": "tip_and_play",
         "mutates": true,
@@ -701,6 +713,35 @@
       {
         "args": [
           {
+            "label": "account",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 2
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get the current streak for an account.",
+          " Returns (last_played_timestamp, current_streak)"
+        ],
+        "label": "get_streak",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 20
+        },
+        "selector": "0x7d259030"
+      },
+      {
+        "args": [
+          {
             "label": "username",
             "type": {
               "displayName": [
@@ -886,6 +927,39 @@
                 }
               },
               "name": "game_play_count"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xa62a9acc",
+                              "ty": 6
+                            }
+                          },
+                          "name": "0"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0xa62a9acc",
+                              "ty": 1
+                            }
+                          },
+                          "name": "1"
+                        }
+                      ],
+                      "name": "(A, B)"
+                    }
+                  },
+                  "root_key": "0xa62a9acc"
+                }
+              },
+              "name": "streaks"
             }
           ],
           "name": "NinjaTip"
@@ -1422,6 +1496,59 @@
       "id": 20,
       "type": {
         "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 21
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "type": {
+        "def": {
+          "tuple": [
+            6,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "id": 22,
+      "type": {
+        "def": {
           "composite": {
             "fields": [
               {
@@ -1439,7 +1566,7 @@
       }
     },
     {
-      "id": 21,
+      "id": 23,
       "type": {
         "def": {
           "variant": {}

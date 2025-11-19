@@ -1,0 +1,93 @@
+.ninja-game-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: #1a1a2e; /* Dark ninja background */
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 2px solid #00bfff;
+}
+
+.explosives-pile {
+    font-size: 4rem;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.explosives-pile.exploding {
+    transform: scale(0); /* Disappear when exploding */
+}
+
+.pile-label {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #ff4d4d;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.ninja-star-projectile {
+    position: absolute;
+    font-size: 3rem;
+    left: -50px;
+    animation: throwStar 1s linear infinite;
+}
+
+@keyframes throwStar {
+    0% {
+        left: -50px;
+        transform: rotate(0deg);
+    }
+    100% {
+        left: 100%;
+        transform: rotate(720deg);
+    }
+}
+
+.explosion-effect {
+    position: absolute;
+    font-size: 5rem;
+    animation: explode 0.5s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+.dud-effect {
+    position: absolute;
+    font-size: 4rem;
+    animation: dud 0.5s ease-out forwards;
+}
+
+@keyframes dud {
+    0% { transform: translateY(-20px); opacity: 0; }
+    50% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0; }
+}
+
+.streak-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff9900;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}

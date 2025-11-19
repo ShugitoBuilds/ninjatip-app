@@ -1,7 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { web3FromAddress } from '@polkadot/extension-dapp';
 import StatusDisplay from './StatusDisplay';
+import NinjaGameVisuals from './NinjaGameVisuals';
 import { generateRandomSalt, saltToHex, formatUsername } from '../utils';
+import useAppStore from '../store';
 
 // Placeholder for the deployed frontend URL. User needs to update this after deployment.
 const FRONTEND_BASE_URL = 'https://ninjatip-app.vercel.app/'; // Ensure this is the actual deployed URL
@@ -11,17 +13,49 @@ function GamePlayForm({ contract, account }) {
     const [gameAmount, setGameAmount] = useState('');
     const [gameSalt, setGameSalt] = useState(null);
     const [gameStatus, setGameStatus] = useState('');
-    const [isAnimating, setIsAnimating] = useState(false); // New state for animations
+    const [visualStatus, setVisualStatus] = useState('idle'); // 'idle', 'playing', 'won', 'lost'
+    const [streak, setStreak] = useState(0);
 
-    // Refs for audio elements (if using native HTML5 Audio)
+    // Refs for audio elements
     const playSoundRef = useRef(null);
     const winSoundRef = useRef(null);
     const loseSoundRef = useRef(null);
+
+    // Fetch streak on load and when account changes
+    useEffect(() => {
+        if (contract && account) {
+            fetchStreak();
+        }
+    }, [contract, account]);
+
+    const fetchStreak = async () => {
+        if (!contract || !account) return;
+        try {
+            // The query returns (timestamp, streak_count)
+            const { output } = await contract.query.getStreak(account.address, { gasLimit: -1 }, account.address);
+            if (output && output.isOk) {
+                const [timestamp, currentStreak] = output.asOk;
+                // Check if streak is active (within 10 mins)
+                const now = Date.now();
+                const lastPlayed = Number(timestamp); // timestamp is u64
+                const windowMs = 600000; // 10 mins
+
+                // Note: Block timestamp is in ms in Ink! usually, but let's verify. 
+                // If it's not expired, show it. If expired, it will reset on next play, but we can show 0 or last known.
+                // For UI, let's just show what the contract returned, maybe with a "Expired" warning if old?
+                // Simpler: Just show the streak count.
+                setStreak(Number(currentStreak));
+            }
+        } catch (e) {
+            console.error("Error fetching streak:", e);
+        }
+    };
 
     const handleGenerateSalt = () => {
         const salt = generateRandomSalt();
         setGameSalt(salt);
         setGameStatus('');
+        setVisualStatus('idle');
     };
 
     const handleCopyGameLink = () => {
@@ -31,8 +65,9 @@ function GamePlayForm({ contract, account }) {
         }
         const username = formatUsername(gameUsername);
         const hexSalt = saltToHex(gameSalt);
-        const gameLink = `${FRONTEND_BASE_URL}/?gameUsername=${username}&gameSalt=${hexSalt}`; // Use different query params
-        copyToClipboard(gameLink);
+        const gameLink = `${FRONTEND_BASE_URL}/?gameUsername=${username}&gameSalt=${hexSalt}`;
+        navigator.clipboard.writeText(gameLink);
+        alert('Game link copied to clipboard!');
     };
 
     const handlePlayGame = async () => {
@@ -45,11 +80,15 @@ function GamePlayForm({ contract, account }) {
             return;
         }
 
-        setGameStatus('Playing game... Good luck!');
-        setIsAnimating(true); // Start animation
+        setGameStatus('Throwing Ninja Star... 🥷⭐');
+        setVisualStatus('playing');
 
-        // --- Play "game start" sound ---
-        if (playSoundRef.current) playSoundRef.current.play();
+        // --- Play "game start" sound (Looping) ---
+        if (playSoundRef.current) {
+            playSoundRef.current.currentTime = 0;
+            playSoundRef.current.loop = true;
+            playSoundRef.current.play().catch(e => console.log("Audio play failed", e));
+        }
 
         try {
             const username = formatUsername(gameUsername);
@@ -57,6 +96,8 @@ function GamePlayForm({ contract, account }) {
 
             if (amount <= 0) {
                 setGameStatus('Error: Amount must be greater than 0');
+                stopAudio();
+                setVisualStatus('idle');
                 return;
             }
 
@@ -66,45 +107,71 @@ function GamePlayForm({ contract, account }) {
             const decimals = 18;
             const value = BigInt(Math.floor(amount * Math.pow(10, decimals)));
 
+            // Call the new tip_and_play function
             const tx = contract.tx.tipAndPlay(
-                { value, gasLimit: -1 }, // -1 for gasLimit means estimate gas
+                { value, gasLimit: -1 },
                 username,
                 saltArray
             );
 
             await tx.signAndSend(account.address, { signer: injector.signer }, ({ status, events }) => {
                 if (status.isInBlock) {
-                    setGameStatus(`Game played in block ${status.asInBlock}!`);
+                    setGameStatus(`Ninja Star in flight... (Block ${status.asInBlock})`);
                 } else if (status.isFinalized) {
-                    setIsAnimating(false); // End animation
+                    stopAudio(); // Stop the looping sound
+
                     let jackpotWon = false;
+                    let newStreak = streak;
+
                     events.forEach(({ event }) => {
                         if (event.method === 'JackpotWon') {
                             jackpotWon = true;
-                            const { winner, amount } = event.data;
-                            setGameStatus(`🎉 CONGRATULATIONS! You won the jackpot of ${Number(amount)/1e18} ASTR!`);
-                            // --- Play "win" sound and trigger "confetti" animation ---
+                            const { amount } = event.data;
+                            setGameStatus(`🎉 BOOM! JACKPOT DETONATED! You won ${Number(amount) / 1e18} ASTR!`);
+                            setVisualStatus('won');
                             if (winSoundRef.current) winSoundRef.current.play();
-                            // Trigger confetti/celebration animation here
+                        }
+                        if (event.method === 'GamePlayed') {
+                            // Update streak from event if available, or just refetch
+                            // event.data.streak should be there
+                            const { streak: eventStreak } = event.data;
+                            if (eventStreak) newStreak = Number(eventStreak);
                         }
                     });
+
                     if (!jackpotWon) {
-                        setGameStatus(`Game finalized. Maybe next time! Salt: ${saltToHex(gameSalt)}`);
-                        // --- Play "lose" sound ---
+                        setGameStatus(`Thud. The star stuck, but no explosion. Streak: ${newStreak}x`);
+                        setVisualStatus('lost');
                         if (loseSoundRef.current) loseSoundRef.current.play();
                     }
+
+                    setStreak(newStreak); // Update streak UI
+
+                    // Reset visual after a delay
+                    setTimeout(() => {
+                        if (visualStatus !== 'idle') setVisualStatus('idle');
+                    }, 5000);
                 } else {
-                    setGameStatus(`Status: ${status.type}`);
+                    // setGameStatus(`Status: ${status.type}`);
                     if (status.isInvalid || status.isDropped) {
-                        setIsAnimating(false); // End animation on error
-                        if (loseSoundRef.current) loseSoundRef.current.play(); // Optional: play a "fail" sound
+                        stopAudio();
+                        setVisualStatus('idle');
+                        setGameStatus('Transaction failed/dropped.');
                     }
                 }
             });
 
         } catch (error) {
-            setIsAnimating(false); // End animation on error
+            stopAudio();
+            setVisualStatus('idle');
             setGameStatus(`Error: ${error.message}`);
+        }
+    };
+
+    const stopAudio = () => {
+        if (playSoundRef.current) {
+            playSoundRef.current.pause();
+            playSoundRef.current.currentTime = 0;
         }
     };
 
@@ -112,23 +179,13 @@ function GamePlayForm({ contract, account }) {
         <div className="section" style={{ border: '2px dashed #00bfff', backgroundColor: '#e6f7ff' }}>
             <h2>🎰 NinjaTip Jackpot Game!</h2>
             <p className="subtitle" style={{ color: '#007bff', marginBottom: '15px' }}>
-                Tip a friend and get a chance to win the entire jackpot pool!
-                A small portion of your tip goes to the owner and the jackpot.
+                Throw a star at the Jackpot Cache! <br />
+                <strong>Streak Bonus:</strong> Play again within 10 mins to boost your explosion chance! (Max 5x)
             </p>
 
-            {/* --- Animation Placeholder --- */}
-            {isAnimating && (
-                <div style={{
-                    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 100,
-                    display: 'flex', justifyContent: 'center', alignItems: 'center',
-                    color: 'white', fontSize: '2em'
-                }}>
-                    {/* Replace with a real animation component (e.g., spinning wheel, slot machine) */}
-                    <p>Spinning the wheel of fortune...</p>
-                </div>
-            )}
-            {/* --- End Animation Placeholder --- */}
+            {/* --- Visual Game Component --- */}
+            <NinjaGameVisuals status={visualStatus} streak={streak} />
+            {/* ----------------------------- */}
 
             <div className="form-group">
                 <label>Recipient Username (e.g., @luckyfriend)</label>
@@ -157,7 +214,7 @@ function GamePlayForm({ contract, account }) {
                     <br />
                     {saltToHex(gameSalt)}
                     <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                        <button className="copy-btn" onClick={() => copyToClipboard(saltToHex(gameSalt))}>
+                        <button className="copy-btn" onClick={() => navigator.clipboard.writeText(saltToHex(gameSalt))}>
                             Copy Salt
                         </button>
                         <button className="copy-btn" onClick={handleCopyGameLink}>
@@ -167,18 +224,20 @@ function GamePlayForm({ contract, account }) {
                 </div>
             )}
 
-            <button onClick={handlePlayGame} disabled={!gameSalt || !account || isAnimating} style={{ marginTop: '20px' }}>
-                Tip and Play!
+            <button
+                onClick={handlePlayGame}
+                disabled={!gameSalt || !account || visualStatus === 'playing'}
+                style={{ marginTop: '20px', backgroundColor: visualStatus === 'playing' ? '#ccc' : '#007bff' }}
+            >
+                {visualStatus === 'playing' ? 'Throwing...' : 'Tip and Play!'}
             </button>
 
             <StatusDisplay statusMessage={gameStatus} />
 
-            {/* --- Audio Elements (Hidden) --- */}
+            {/* --- Audio Elements --- */}
             <audio ref={playSoundRef} src="/sounds/play.mp3" preload="auto"></audio>
             <audio ref={winSoundRef} src="/sounds/win.mp3" preload="auto"></audio>
             <audio ref={loseSoundRef} src="/sounds/lose.mp3" preload="auto"></audio>
-            {/* You'll need to place your sound files in the `public` folder */}
-            {/* --- End Audio Elements --- */}
         </div>
     );
 }
