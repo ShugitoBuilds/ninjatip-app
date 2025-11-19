@@ -19,7 +19,7 @@ function CheckPremiumOwnerForm({ contract }) {
             const username = formatUsername(premiumNameQuery);
             const { result, output } = await contract.query.getPremiumOwner(
                 '0x0000000000000000000000000000000000000000000000000000000000000000', // Dummy caller for query
-                { gasLimit: -1 },
+                { gasLimit: null },
                 username
             );
 

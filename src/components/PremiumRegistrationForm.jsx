@@ -22,7 +22,7 @@ function PremiumRegistrationForm({ contract, account }) {
             const cost = BigInt(10) * BigInt(1e18);
 
             const tx = contract.tx.registerPremiumUsername(
-                { value: cost, gasLimit: -1 },
+                { value: cost, gasLimit: null },
                 premiumName
             );
 

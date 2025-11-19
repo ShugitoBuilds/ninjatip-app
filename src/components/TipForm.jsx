@@ -26,7 +26,7 @@ function TipForm({ contract, account }) {
         const username = formatUsername(tipUsername);
         const hexSalt = saltToHex(tipSalt);
         const tipLink = `${FRONTEND_BASE_URL}/?username=${username}&salt=${hexSalt}`;
-        copyToClipboard(tipLink);
+        navigator.clipboard.writeText(tipLink).then(() => alert('Copied to clipboard!'));
     };
 
     const handleSendTip = async () => {
@@ -57,7 +57,7 @@ function TipForm({ contract, account }) {
             const value = BigInt(Math.floor(amount * Math.pow(10, decimals)));
 
             const tx = contract.tx.tip(
-                { value, gasLimit: -1 }, // -1 for gasLimit means estimate gas
+                { value, gasLimit: null },
                 username,
                 saltArray
             );
@@ -107,7 +107,7 @@ function TipForm({ contract, account }) {
                     <br />
                     {saltToHex(tipSalt)}
                     <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
-                        <button className="copy-btn" onClick={() => copyToClipboard(saltToHex(tipSalt))}>
+                        <button className="copy-btn" onClick={() => navigator.clipboard.writeText(saltToHex(tipSalt))}>
                             Copy Salt
                         </button>
                         <button className="copy-btn" onClick={handleCopyTipLink}>

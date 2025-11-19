@@ -36,7 +36,7 @@ function CheckBalanceForm({ api, contract, account }) {
 
             const { result, output } = await contract.query.getStealthBalance(
                 caller,
-                { gasLimit: -1 },
+                { gasLimit: null },
                 username,
                 Array.from(salt)
             );
