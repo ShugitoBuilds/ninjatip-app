@@ -4,7 +4,7 @@ import { deriveStealthAddress, hexToSalt, formatUsername } from '../utils';
 import { useAppStore } from '../store'; // To get CONTRACT_ADDRESS from store directly
 
 // Configuration (can be moved to a config file if many constants)
-const CONTRACT_ADDRESS = 'Wqqt5T8mQg5Spj9sc3pDso32Z1j4akVt5XY5VdQEPFfgxYK'; // Redefine or import globally if needed
+const CONTRACT_ADDRESS = 'XT4aydpP7aPLBxpMvM1bHrTAk9Dp8Qphaqk9FR7ugvHybFR'; // Redefine or import globally if needed
 
 function CheckBalanceForm({ api, contract, account }) {
     const [checkUsername, setCheckUsername] = useState('');

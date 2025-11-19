@@ -3,7 +3,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 import { ContractPromise } from '@polkadot/api-contract';
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
 
-const CONTRACT_ADDRESS = 'Wqqt5T8mQg5Spj9sc3pDso32Z1j4akVt5XY5VdQEPFfgxYK';
+const CONTRACT_ADDRESS = 'XT4aydpP7aPLBxpMvM1bHrTAk9Dp8Qphaqk9FR7ugvHybFR';
 const RPC_URL = 'wss://rpc.astar.network';
 
 export const useAppStore = create((set, get) => ({
