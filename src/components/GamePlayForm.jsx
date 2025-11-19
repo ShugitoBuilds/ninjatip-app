@@ -32,7 +32,7 @@ function GamePlayForm({ contract, account }) {
         if (!contract || !account) return;
         try {
             // The query returns (timestamp, streak_count)
-            const { output } = await contract.query.getStreak(account.address, { gasLimit: -1 }, account.address);
+            const { output } = await contract.query.getStreak(account.address, null, account.address);
             if (output && output.isOk) {
                 const [timestamp, currentStreak] = output.asOk;
                 // Check if streak is active (within 10 mins)
@@ -109,7 +109,7 @@ function GamePlayForm({ contract, account }) {
 
             // Call the new tip_and_play function
             const tx = contract.tx.tipAndPlay(
-                { value, gasLimit: -1 },
+                { value, gasLimit: null },
                 username,
                 saltArray
             );
