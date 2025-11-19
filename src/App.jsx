@@ -8,6 +8,7 @@ import { useAppStore } from './store';
 // Import Components
 import WalletConnector from './components/WalletConnector';
 import GamePlayForm from './components/GamePlayForm';
+import BlockchainActivity from './components/BlockchainActivity'; // New import
 
 import JackpotDisplay from './components/JackpotDisplay'; // New import
 import StatusDisplay from './components/StatusDisplay'; // For global app status
@@ -44,6 +45,7 @@ function App() {
 
     return (
         <div className="container">
+            <BlockchainActivity />
             <h1>🥷 NinjaTip (Astar)</h1>
             <p className="subtitle">Anonymous stealth tipping on Astar Network</p>
 

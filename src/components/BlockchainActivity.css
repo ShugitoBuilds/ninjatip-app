@@ -1,0 +1,87 @@
+.blockchain-ticker-container {
+    width: 100%;
+    background-color: #0a0a0a;
+    border-bottom: 1px solid #333;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff41;
+    /* Matrix green */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.ticker-label {
+    background-color: #111;
+    padding: 0 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    border-right: 1px solid #333;
+    z-index: 2;
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.ticker-content {
+    display: flex;
+    animation: scroll-left 20s linear infinite;
+    /* Optional: auto-scroll if we want */
+    /* For now, we'll just let them stack or use a marquee effect if requested. 
+       Let's stick to a static list that updates for now to ensure readability. */
+    animation: none;
+    padding-left: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+.ticker-content::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+.block-item {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+    font-size: 0.85rem;
+}
+
+.block-item:hover {
+    opacity: 1;
+    cursor: default;
+}
+
+.block-number {
+    color: #fff;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.block-hash {
+    color: #00bfff;
+    font-size: 0.8em;
+}
+
+.new-block-flash {
+    animation: flash 1s ease-out;
+}
+
+@keyframes flash {
+    0% {
+        background-color: rgba(0, 255, 65, 0.5);
+    }
+
+    100% {
+        background-color: transparent;
+    }
+}
