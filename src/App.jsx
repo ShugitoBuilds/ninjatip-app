@@ -58,14 +58,7 @@ function App() {
                 connectWallet={connectWallet}
                 disconnectWallet={useAppStore.getState().disconnectWallet} // Pass disconnect as well
             />
-            {account && (
-                <div style={{ textAlign: 'center', marginBottom: '20px', color: 'green' }}>
-                    Connected: {account.address.slice(0, 6)}...{account.address.slice(-4)}
-                    <button onClick={useAppStore.getState().disconnectWallet} style={{ marginLeft: '10px', width: 'auto', padding: '5px 10px', fontSize: '0.8em' }}>
-                        Disconnect
-                    </button>
-                </div>
-            )}
+
 
             {/* Render Jackpot Display */}
             {connected && api && contract && <JackpotDisplay />}
