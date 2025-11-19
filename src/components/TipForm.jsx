@@ -4,7 +4,7 @@ import StatusDisplay from './StatusDisplay';
 import { generateRandomSalt, saltToHex, formatUsername, copyToClipboard } from '../utils';
 
 // Placeholder for the deployed frontend URL. User needs to update this after deployment.
-const FRONTEND_BASE_URL = 'https://ninjatip.xyz'; // IMPORTANT: Update this after deploying your frontend!
+const FRONTEND_BASE_URL = 'https://ninjatip-app.vercel.app/';
 
 function TipForm({ contract, account }) {
     const [tipUsername, setTipUsername] = useState('');
