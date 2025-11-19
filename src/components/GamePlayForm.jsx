@@ -176,9 +176,9 @@ function GamePlayForm({ contract, account }) {
     };
 
     return (
-        <div className="section" style={{ border: '2px dashed #00bfff', backgroundColor: '#e6f7ff' }}>
+        <div className="section game-section">
             <h2>🎰 NinjaTip Jackpot Game!</h2>
-            <p className="subtitle" style={{ color: '#007bff', marginBottom: '15px' }}>
+            <p className="subtitle">
                 Throw a star at the Jackpot Cache! <br />
                 <strong>Streak Bonus:</strong> Play again within 10 mins to boost your explosion chance! (Max 5x)
             </p>
@@ -227,7 +227,8 @@ function GamePlayForm({ contract, account }) {
             <button
                 onClick={handlePlayGame}
                 disabled={!gameSalt || !account || visualStatus === 'playing'}
-                style={{ marginTop: '20px', backgroundColor: visualStatus === 'playing' ? '#ccc' : '#007bff' }}
+                className="play-button"
+                style={{ marginTop: '20px', width: '100%' }}
             >
                 {visualStatus === 'playing' ? 'Throwing...' : 'Tip and Play!'}
             </button>
