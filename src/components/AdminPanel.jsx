@@ -17,7 +17,7 @@ function AdminPanel({ contract, account }) {
         setAdminStatus('Toggling fee...');
         try {
             const injector = await web3FromAddress(account.address);
-            const tx = contract.tx.setFeeEnabled({ gasLimit: null }, !feeEnabled);
+            const tx = contract.tx.setFeeEnabled({}, !feeEnabled);
             await tx.signAndSend(account.address, { signer: injector.signer }, ({ status }) => {
                 if (status.isFinalized) {
                     setFeeEnabled(!feeEnabled); // Update local state on success
@@ -39,7 +39,7 @@ function AdminPanel({ contract, account }) {
         setAdminStatus('Collecting fees...');
         try {
             const injector = await web3FromAddress(account.address);
-            const tx = contract.tx.collectFees({ gasLimit: null });
+            const tx = contract.tx.collectFees({});
             await tx.signAndSend(account.address, { signer: injector.signer }, ({ status }) => {
                 if (status.isFinalized) {
                     setAdminStatus('Fees collected!');

@@ -7,13 +7,8 @@ import { useAppStore } from './store';
 
 // Import Components
 import WalletConnector from './components/WalletConnector';
-import TipForm from './components/TipForm';
-import GamePlayForm from './components/GamePlayForm'; // New import
-import CheckBalanceForm from './components/CheckBalanceForm';
-import WithdrawForm from './components/WithdrawForm';
-import PremiumRegistrationForm from './components/PremiumRegistrationForm';
-import AdminPanel from './components/AdminPanel';
-import CheckPremiumOwnerForm from './components/CheckPremiumOwnerForm';
+import GamePlayForm from './components/GamePlayForm';
+
 import JackpotDisplay from './components/JackpotDisplay'; // New import
 import StatusDisplay from './components/StatusDisplay'; // For global app status
 
@@ -68,31 +63,6 @@ function App() {
                 <>
                     {/* Game Play Form - prominently displayed */}
                     <GamePlayForm
-                        contract={contract}
-                        account={account}
-                    />
-
-                    <TipForm
-                        contract={contract}
-                        account={account}
-                    />
-                    <CheckBalanceForm
-                        api={api}
-                        contract={contract}
-                        account={account}
-                    />
-                    <WithdrawForm
-                        contract={contract}
-                        account={account}
-                    />
-                    <PremiumRegistrationForm
-                        contract={contract}
-                        account={account}
-                    />
-                    <CheckPremiumOwnerForm
-                        contract={contract}
-                    />
-                    <AdminPanel
                         contract={contract}
                         account={account}
                     />

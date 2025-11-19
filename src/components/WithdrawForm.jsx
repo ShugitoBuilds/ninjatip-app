@@ -27,7 +27,7 @@ function WithdrawForm({ contract, account }) { // Removed utility functions from
             const injector = await web3FromAddress(account.address);
 
             const tx = contract.tx.withdraw(
-                { gasLimit: null },
+                {},
                 username,
                 saltArray
             );

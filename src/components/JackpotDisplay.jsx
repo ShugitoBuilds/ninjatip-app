@@ -16,7 +16,7 @@ function JackpotDisplay() {
                     // Fetch Jackpot Pool
                     const { output: poolOutput } = await contract.query.getJackpotPool(
                         '0x0000000000000000000000000000000000000000000000000000000000000000', // Dummy caller for query
-                        { gasLimit: null }
+                        {}
                     );
                     if (poolOutput) {
                         const rawPool = poolOutput.toString();
@@ -26,7 +26,7 @@ function JackpotDisplay() {
                     // Fetch Last Winner
                     const { output: winnerOutput } = await contract.query.getLastJackpotWinner(
                         '0x0000000000000000000000000000000000000000000000000000000000000000', // Dummy caller for query
-                        { gasLimit: null }
+                        {}
                     );
                     if (winnerOutput && winnerOutput.isSome) {
                         setLastWinner(winnerOutput.toHuman());

@@ -57,7 +57,7 @@ function TipForm({ contract, account }) {
             const value = BigInt(Math.floor(amount * Math.pow(10, decimals)));
 
             const tx = contract.tx.tip(
-                { value, gasLimit: null },
+                { value },
                 username,
                 saltArray
             );
