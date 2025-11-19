@@ -22,7 +22,7 @@ export const useAppStore = create((set, get) => ({
             const provider = new WsProvider(RPC_URL);
             const api = await ApiPromise.create({ provider });
 
-            const abi = await fetch('/ninjatip.json').then(r => r.json());
+            const abi = await fetch('/contract-v2.json').then(r => r.json());
             const contract = new ContractPromise(api, abi, CONTRACT_ADDRESS);
 
             
