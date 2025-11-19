@@ -1,0 +1,9 @@
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/ink/release/deps/derive_more_impl-fe106bb2b945ad61.d: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/utils.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/from.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/../README.md /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/../doc/from.md
+
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/ink/release/deps/libderive_more_impl-fe106bb2b945ad61.so: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/utils.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/from.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/../README.md /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/../doc/from.md
+
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/lib.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/utils.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/from.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/../README.md:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/derive_more-impl-1.0.0/src/../doc/from.md:

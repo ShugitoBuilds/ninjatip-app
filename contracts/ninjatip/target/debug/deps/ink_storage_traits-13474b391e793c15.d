@@ -1,0 +1,9 @@
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/deps/ink_storage_traits-13474b391e793c15.d: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/impls/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/storage.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/layout/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/layout/impls.rs
+
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/deps/libink_storage_traits-13474b391e793c15.rmeta: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/impls/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/storage.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/layout/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/layout/impls.rs
+
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/lib.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/impls/mod.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/storage.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/layout/mod.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ink_storage_traits-5.1.1/src/layout/impls.rs:

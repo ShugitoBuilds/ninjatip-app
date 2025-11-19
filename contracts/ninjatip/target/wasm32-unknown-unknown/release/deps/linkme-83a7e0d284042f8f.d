@@ -1,0 +1,12 @@
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/wasm32-unknown-unknown/release/deps/linkme-83a7e0d284042f8f.d: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/distributed_slice.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/private.rs /mnt/c/Users/jromb/Cursor\ projects/dot\ proj\ 1/ninjatip/contracts/ninjatip/target/wasm32-unknown-unknown/release/build/linkme-c59f3043f13cc1be/out/private.rs
+
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/wasm32-unknown-unknown/release/deps/liblinkme-83a7e0d284042f8f.rlib: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/distributed_slice.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/private.rs /mnt/c/Users/jromb/Cursor\ projects/dot\ proj\ 1/ninjatip/contracts/ninjatip/target/wasm32-unknown-unknown/release/build/linkme-c59f3043f13cc1be/out/private.rs
+
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/wasm32-unknown-unknown/release/deps/liblinkme-83a7e0d284042f8f.rmeta: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/distributed_slice.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/private.rs /mnt/c/Users/jromb/Cursor\ projects/dot\ proj\ 1/ninjatip/contracts/ninjatip/target/wasm32-unknown-unknown/release/build/linkme-c59f3043f13cc1be/out/private.rs
+
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/lib.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/distributed_slice.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/linkme-0.3.35/src/private.rs:
+/mnt/c/Users/jromb/Cursor\ projects/dot\ proj\ 1/ninjatip/contracts/ninjatip/target/wasm32-unknown-unknown/release/build/linkme-c59f3043f13cc1be/out/private.rs:
+
+# env-dep:OUT_DIR=/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/wasm32-unknown-unknown/release/build/linkme-c59f3043f13cc1be/out

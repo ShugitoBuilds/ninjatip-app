@@ -1,0 +1,13 @@
+error: could not copy "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/ink/wasm32-unknown-unknown/release/build/num-traits-aefc6894cd5286b5/out/autocfg_89e88a8651e6061f_0.autocfg_89e88a8651e6061f_0.330aeb3b98741369-cgu.0.rcgu.ll" to "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/ink/wasm32-unknown-unknown/release/build/num-traits-aefc6894cd5286b5/out/autocfg_89e88a8651e6061f_0.ll": Operation not permitted (os error 1)
+
+error: aborting due to 1 previous error
+
+error: could not copy "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/ink/wasm32-unknown-unknown/release/build/num-traits-aefc6894cd5286b5/out/autocfg_89e88a8651e6061f_1.autocfg_89e88a8651e6061f_1.5c10d965dfd2944f-cgu.0.rcgu.ll" to "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/ink/wasm32-unknown-unknown/release/build/num-traits-aefc6894cd5286b5/out/autocfg_89e88a8651e6061f_1.ll": Operation not permitted (os error 1)
+
+error: aborting due to 1 previous error
+
+warning: autocfg could not probe for `std`
+error: could not copy "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/ink/wasm32-unknown-unknown/release/build/num-traits-aefc6894cd5286b5/out/autocfg_89e88a8651e6061f_2.autocfg_89e88a8651e6061f_2.cc87e3027e9ff6ac-cgu.0.rcgu.ll" to "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/ink/wasm32-unknown-unknown/release/build/num-traits-aefc6894cd5286b5/out/autocfg_89e88a8651e6061f_2.ll": Operation not permitted (os error 1)
+
+error: aborting due to 1 previous error
+

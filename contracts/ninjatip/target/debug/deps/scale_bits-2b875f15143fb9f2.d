@@ -1,0 +1,10 @@
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/deps/scale_bits-2b875f15143fb9f2.d: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/bits/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/bits/bits.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/decode_iter.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/encode_iter.rs
+
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/deps/libscale_bits-2b875f15143fb9f2.rmeta: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/bits/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/bits/bits.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/decode_iter.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/encode_iter.rs
+
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/lib.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/bits/mod.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/bits/bits.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/mod.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/decode_iter.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-bits-0.5.0/src/scale/encode_iter.rs:

@@ -1,0 +1,10 @@
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/release/deps/xcm_procedural-1d864522df273690.d: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/builder_pattern.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v2.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v3.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v4.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/weight_info.rs
+
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/release/deps/libxcm_procedural-1d864522df273690.so: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/builder_pattern.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v2.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v3.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v4.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/weight_info.rs
+
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/lib.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/builder_pattern.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v2.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v3.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/v4.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/xcm-procedural-8.0.0/src/weight_info.rs:

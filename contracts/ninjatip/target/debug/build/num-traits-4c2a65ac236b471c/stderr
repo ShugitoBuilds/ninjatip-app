@@ -1,0 +1,13 @@
+error: could not copy "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/build/num-traits-4c2a65ac236b471c/out/autocfg_21a2658a35fafa57_0.autocfg_21a2658a35fafa57_0.e117b0988f47923e-cgu.0.rcgu.ll" to "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/build/num-traits-4c2a65ac236b471c/out/autocfg_21a2658a35fafa57_0.ll": Operation not permitted (os error 1)
+
+error: aborting due to 1 previous error
+
+error: could not copy "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/build/num-traits-4c2a65ac236b471c/out/autocfg_21a2658a35fafa57_1.autocfg_21a2658a35fafa57_1.96f56f3e3cfa0822-cgu.0.rcgu.ll" to "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/build/num-traits-4c2a65ac236b471c/out/autocfg_21a2658a35fafa57_1.ll": Operation not permitted (os error 1)
+
+error: aborting due to 1 previous error
+
+warning: autocfg could not probe for `std`
+error: could not copy "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/build/num-traits-4c2a65ac236b471c/out/autocfg_21a2658a35fafa57_2.autocfg_21a2658a35fafa57_2.1dca5912c9761227-cgu.0.rcgu.ll" to "/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/build/num-traits-4c2a65ac236b471c/out/autocfg_21a2658a35fafa57_2.ll": Operation not permitted (os error 1)
+
+error: aborting due to 1 previous error
+

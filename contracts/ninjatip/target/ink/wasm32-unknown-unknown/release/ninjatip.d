@@ -1,0 +1,1 @@
+/mnt/c/Users/jromb/Cursor\ projects/dot\ proj\ 1/ninjatip/contracts/ninjatip/target/ink/wasm32-unknown-unknown/release/ninjatip.wasm: /mnt/c/Users/jromb/Cursor\ projects/dot\ proj\ 1/ninjatip/contracts/ninjatip/src/lib.rs

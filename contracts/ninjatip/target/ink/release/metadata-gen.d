@@ -1,0 +1,1 @@
+/mnt/c/Users/jromb/Cursor\ projects/dot\ proj\ 1/ninjatip/contracts/ninjatip/target/ink/release/metadata-gen: /mnt/c/Users/jromb/Cursor\ projects/dot\ proj\ 1/ninjatip/contracts/ninjatip/src/lib.rs /tmp/cargo-contract_Tlo756/.ink/metadata_gen/main.rs

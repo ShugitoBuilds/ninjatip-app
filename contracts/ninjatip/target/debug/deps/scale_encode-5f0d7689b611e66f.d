@@ -1,0 +1,10 @@
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/deps/scale_encode-5f0d7689b611e66f.d: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/composite.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/variant.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/context.rs
+
+/mnt/c/Users/jromb/Cursor projects/dot proj 1/ninjatip/contracts/ninjatip/target/debug/deps/libscale_encode-5f0d7689b611e66f.rmeta: /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/lib.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/composite.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/variant.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/mod.rs /home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/context.rs
+
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/lib.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/mod.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/composite.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/variant.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/mod.rs:
+/home/jromb/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/context.rs:

@@ -105,6 +105,9 @@ function App() {
                     />
                 </>
             )}
+            <footer style={{ textAlign: 'center', marginTop: '30px', fontSize: '0.8em', color: '#aaa' }}>
+                v1.1.0 (Gamified Update)
+            </footer>
         </div>
     );
 }
