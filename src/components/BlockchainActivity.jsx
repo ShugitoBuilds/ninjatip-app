@@ -18,9 +18,9 @@ const BlockchainActivity = () => {
                     const blockHash = header.hash.toHex();
 
                     setBlocks(prevBlocks => {
-                        // Keep only the last 10 blocks
-                        const newBlocks = [{ number: blockNumber, hash: blockHash }, ...prevBlocks];
-                        return newBlocks.slice(0, 10);
+                        // Keep only the last 15 blocks for the window
+                        const newBlocks = [{ number: blockNumber, hash: blockHash, timestamp: Date.now() }, ...prevBlocks];
+                        return newBlocks.slice(0, 15);
                     });
                 });
             } catch (error) {
@@ -42,18 +42,19 @@ const BlockchainActivity = () => {
     return (
         <div className="blockchain-ticker-container">
             <div className="ticker-label">
-                🔗 LIVE ACTIVITY
+                LIVE BLOCKS
             </div>
             <div className="ticker-content">
                 {blocks.map((block) => (
-                    <div key={block.hash} className="block-item new-block-flash">
-                        <span className="block-number">#{block.number}</span>
-                        <span className="block-hash">[{block.hash.slice(0, 6)}...{block.hash.slice(-4)}]</span>
+                    <div key={block.hash} className="block-card new-block-slide">
+                        <div className="block-status"></div>
+                        <div className="block-number">#{block.number}</div>
+                        <div className="block-hash">{block.hash.slice(0, 6)}...{block.hash.slice(-4)}</div>
                     </div>
                 ))}
                 {blocks.length === 0 && (
-                    <div className="block-item" style={{ fontStyle: 'italic', color: '#666' }}>
-                        Waiting for blocks...
+                    <div style={{ padding: '0 20px', fontStyle: 'italic', color: '#9ca3af' }}>
+                        Connecting to chain...
                     </div>
                 )}
             </div>

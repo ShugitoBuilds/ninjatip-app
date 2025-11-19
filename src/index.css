@@ -1,35 +1,35 @@
 :root {
-    /* --- Shadow & Crimson Theme --- */
+    /* --- Light Ninja Theme --- */
 
     /* Backgrounds */
-    --bg-core: #050505;
-    /* Deepest Black */
-    --bg-card: #111111;
-    /* Dark Charcoal */
-    --bg-input: #1a1a1a;
-    /* Input Fields */
-    --bg-hover: #222222;
+    --bg-core: #f3f4f6;
+    /* Light Grey */
+    --bg-card: #ffffff;
+    /* Pure White */
+    --bg-input: #f9fafb;
+    /* Very Light Grey */
+    --bg-hover: #e5e7eb;
     /* Hover State */
 
     /* Text */
-    --text-primary: #f3f4f6;
-    /* Off-white */
-    --text-secondary: #9ca3af;
-    /* Muted Grey */
-    --text-muted: #4b5563;
-    /* Darker Grey */
+    --text-primary: #111827;
+    /* Deep Dark Grey (almost black) */
+    --text-secondary: #4b5563;
+    /* Medium Grey */
+    --text-muted: #9ca3af;
+    /* Light Grey */
 
     /* Accents */
-    --accent-primary: #dc2626;
-    /* Crimson Red */
-    --accent-hover: #b91c1c;
+    --accent-primary: #ef4444;
+    /* Vibrant Red */
+    --accent-hover: #dc2626;
     /* Darker Red */
-    --accent-glow: rgba(220, 38, 38, 0.4);
-    /* Red Glow */
+    --accent-glow: rgba(239, 68, 68, 0.2);
+    /* Soft Red Glow */
 
     /* Borders */
-    --border-subtle: #262626;
-    --border-focus: #dc2626;
+    --border-subtle: #e5e7eb;
+    --border-focus: #ef4444;
 
     /* Status */
     --status-success: #10b981;
@@ -65,12 +65,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333;
+    background: #d1d5db;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #444;
+    background: #9ca3af;
 }
 
 /* Global Inputs */
@@ -89,7 +89,7 @@ input {
 input:focus {
     outline: none;
     border-color: var(--border-focus);
-    box-shadow: 0 0 0 2px var(--accent-glow);
+    box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 /* Global Buttons */
@@ -104,17 +104,18 @@ button {
     transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
 }
 
 button:hover:not(:disabled) {
     background-color: var(--accent-hover);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--accent-glow);
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.4);
 }
 
 button:disabled {
-    background-color: var(--bg-hover);
-    color: var(--text-muted);
+    background-color: #d1d5db;
+    color: #9ca3af;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
@@ -124,6 +125,7 @@ button:disabled {
 a {
     color: var(--accent-primary);
     text-decoration: none;
+    font-weight: 500;
 }
 
 a:hover {

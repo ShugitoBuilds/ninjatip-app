@@ -1,84 +1,106 @@
 .blockchain-ticker-container {
     width: 100%;
-    background-color: #000;
-    /* Pure Black */
-    border-bottom: 1px solid var(--accent-primary);
-    /* Red Line */
+    background-color: #1f2937;
+    /* Dark header for contrast */
+    color: white;
     overflow: hidden;
-    white-space: nowrap;
     position: relative;
-    height: 36px;
+    height: 60px;
+    /* Taller for the cards */
     display: flex;
     align-items: center;
     font-family: var(--font-mono);
-    color: var(--text-primary);
-    box-shadow: 0 2px 10px rgba(220, 38, 38, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
 .ticker-label {
     background-color: var(--accent-primary);
     color: white;
-    padding: 0 15px;
+    padding: 0 20px;
     height: 100%;
     display: flex;
     align-items: center;
-    font-weight: bold;
-    font-size: 0.8rem;
+    font-weight: 800;
+    font-size: 0.9rem;
     letter-spacing: 1px;
     z-index: 2;
-    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
 }
 
 .ticker-content {
     display: flex;
-    padding-left: 15px;
+    padding-left: 10px;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     align-items: center;
     height: 100%;
+    gap: 10px;
+    /* Space between blocks */
 }
 
 .ticker-content::-webkit-scrollbar {
     display: none;
 }
 
-.block-item {
-    display: inline-flex;
-    align-items: center;
-    margin-right: 25px;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-    font-size: 0.8rem;
+.block-card {
+    background-color: #374151;
+    /* Darker grey card */
+    border: 1px solid #4b5563;
+    border-radius: 4px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
-.block-item:hover {
-    opacity: 1;
-    color: var(--accent-primary);
+.block-card:hover {
+    background-color: #4b5563;
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
 }
 
 .block-number {
-    color: var(--text-primary);
+    font-size: 0.9rem;
     font-weight: bold;
-    margin-right: 8px;
+    color: #fff;
 }
 
 .block-hash {
-    color: var(--text-secondary);
-    font-size: 0.9em;
+    font-size: 0.7rem;
+    color: #9ca3af;
+    margin-top: 2px;
 }
 
-.new-block-flash {
-    animation: flashRed 1s ease-out;
+.block-status {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10b981;
+    /* Green for finalized/new */
+    box-shadow: 0 0 5px #10b981;
 }
 
-@keyframes flashRed {
-    0% {
-        background-color: rgba(220, 38, 38, 0.3);
+/* Animation for new blocks appearing */
+.new-block-slide {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
     }
 
-    100% {
-        background-color: transparent;
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
