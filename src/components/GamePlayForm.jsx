@@ -15,6 +15,7 @@ function GamePlayForm({ contract, account }) {
     const [gameStatus, setGameStatus] = useState('');
     const [visualStatus, setVisualStatus] = useState('idle'); // 'idle', 'playing', 'won', 'lost'
     const [streak, setStreak] = useState(0);
+    const [showAdvanced, setShowAdvanced] = useState(false);
 
     // Refs for audio elements
     const playSoundRef = useRef(null);
@@ -164,7 +165,12 @@ function GamePlayForm({ contract, account }) {
         } catch (error) {
             stopAudio();
             setVisualStatus('idle');
-            setGameStatus(`Error: ${error.message}`);
+
+            if (error.message && error.message.includes('disconnected port object')) {
+                setGameStatus('⚠️ Wallet connection lost. Please refresh the page to reconnect.');
+            } else {
+                setGameStatus(`Error: ${error.message}`);
+            }
         }
     };
 
@@ -208,12 +214,31 @@ function GamePlayForm({ contract, account }) {
             </div>
             <button onClick={handleGenerateSalt}>Generate Random Salt</button>
 
-            {gameSalt && (
-                <div className="salt-display">
+            <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                <button
+                    onClick={() => setShowAdvanced(!showAdvanced)}
+                    style={{
+                        background: 'none',
+                        border: 'none',
+                        color: '#9ca3af',
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                        fontSize: '0.9rem',
+                        boxShadow: 'none'
+                    }}
+                >
+                    {showAdvanced ? 'Hide Advanced Options' : 'Show Advanced Options (Salt & Link)'}
+                </button>
+            </div>
+
+            {showAdvanced && gameSalt && (
+                <div className="salt-display" style={{ marginTop: '15px', padding: '15px', background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
                     <strong>Salt (share this privately with recipient):</strong>
                     <br />
-                    {saltToHex(gameSalt)}
-                    <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                    <div style={{ wordBreak: 'break-all', fontFamily: 'monospace', margin: '10px 0', color: '#6b7280' }}>
+                        {saltToHex(gameSalt)}
+                    </div>
+                    <div style={{ display: 'flex', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
                         <button className="copy-btn" onClick={() => navigator.clipboard.writeText(saltToHex(gameSalt))}>
                             Copy Salt
                         </button>
