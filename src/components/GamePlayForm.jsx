@@ -76,9 +76,16 @@ function GamePlayForm({ contract, account }) {
             setGameStatus('Error: Please connect your wallet first!');
             return;
         }
-        if (!gameUsername || !gameAmount || !gameSalt) {
-            setGameStatus('Error: Please enter username, amount, and generate a salt');
+        if (!gameUsername || !gameAmount) {
+            setGameStatus('Error: Please enter username and amount');
             return;
+        }
+
+        // Auto-generate salt if missing
+        let currentSalt = gameSalt;
+        if (!currentSalt) {
+            currentSalt = generateRandomSalt();
+            setGameSalt(currentSalt);
         }
 
         setGameStatus('Throwing Ninja Star... 🥷⭐');
@@ -102,7 +109,7 @@ function GamePlayForm({ contract, account }) {
                 return;
             }
 
-            const saltArray = Array.from(gameSalt);
+            const saltArray = Array.from(currentSalt);
             const injector = await web3FromAddress(account.address);
 
             const decimals = 18;
@@ -194,13 +201,19 @@ function GamePlayForm({ contract, account }) {
             {/* ----------------------------- */}
 
             <div className="form-group">
-                <label>Recipient Username (e.g., @luckyfriend)</label>
+                <label>
+                    Recipient Username (e.g., @luckyfriend)
+                    <span title="Currently, funds go to the Jackpot Pool. Username is for the record only." style={{ marginLeft: '8px', cursor: 'help', fontSize: '1.2em' }}>ℹ️</span>
+                </label>
                 <input
                     type="text"
                     placeholder="@username"
                     value={gameUsername}
                     onChange={(e) => setGameUsername(e.target.value)}
                 />
+                <small style={{ display: 'block', marginTop: '5px', color: '#6b7280', fontSize: '0.8em' }}>
+                    * Tips currently fund the Jackpot Pool. Direct tipping coming soon!
+                </small>
             </div>
             <div className="form-group">
                 <label>Amount to Play (ASTR)</label>
@@ -212,7 +225,7 @@ function GamePlayForm({ contract, account }) {
                     onChange={(e) => setGameAmount(e.target.value)}
                 />
             </div>
-            <button onClick={handleGenerateSalt}>Generate Random Salt</button>
+            {/* <button onClick={handleGenerateSalt}>Generate Random Salt</button> */ /* Removed for consolidation */}
 
             <div style={{ textAlign: 'center', marginTop: '10px' }}>
                 <button
@@ -251,7 +264,7 @@ function GamePlayForm({ contract, account }) {
 
             <button
                 onClick={handlePlayGame}
-                disabled={!gameSalt || !account || visualStatus === 'playing'}
+                disabled={!account || visualStatus === 'playing'}
                 className="play-button"
                 style={{ marginTop: '20px', width: '100%' }}
             >
