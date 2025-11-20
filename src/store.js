@@ -3,7 +3,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api';
 import { ContractPromise } from '@polkadot/api-contract';
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp';
 
-const CONTRACT_ADDRESS = 'XT4aydpP7aPLBxpMvM1bHrTAk9Dp8Qphaqk9FR7ugvHybFR';
+const CONTRACT_ADDRESS = 'aXw5syQTuYtSAu2zUkvfHRH8oWELLnzhkzwZcsGh6iFF6Y9';
 const RPC_URL = 'wss://rpc.astar.network';
 
 export const useAppStore = create((set, get) => ({
@@ -25,7 +25,7 @@ export const useAppStore = create((set, get) => ({
             const abi = await fetch('/contract-v2.json').then(r => r.json());
             const contract = new ContractPromise(api, abi, CONTRACT_ADDRESS);
 
-            
+
             set({ api, contract, connected: true, loading: false });
         } catch (error) {
             console.error('Failed to connect:', error);
