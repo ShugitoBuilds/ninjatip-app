@@ -27,8 +27,8 @@ mod ninjatip {
         fee_rate: u8,
         /// Accumulated fees collected (for owner withdrawal)
         accumulated_fees: Balance,
-        /// Reserved premium usernames → owner (for future monetization)
-        premium_usernames: Mapping<String, AccountId>,
+        /// Registry of usernames → AccountId (for direct tipping)
+        username_registry: Mapping<String, AccountId>,
         /// --- Gamification Fields ---
         /// The current jackpot pool amount.
         jackpot_pool: Balance,
@@ -76,14 +76,26 @@ mod ninjatip {
         amount: Balance,
     }
 
-    /// Event emitted when a premium username is registered
+    /// Event emitted when a username is registered
     #[ink(event)]
-    pub struct PremiumRegistered {
+    pub struct UsernameRegistered {
         #[ink(topic)]
         username: String,
         #[ink(topic)]
         owner: AccountId,
         cost: Balance,
+    }
+
+    /// Event emitted when a direct tip is sent to a registered user
+    #[ink(event)]
+    pub struct DirectTipSent {
+        #[ink(topic)]
+        username: String,
+        #[ink(topic)]
+        amount: Balance,
+        #[ink(topic)]
+        recipient: AccountId,
+        fee: Balance,
     }
 
     // --- Gamification Events ---
@@ -124,8 +136,10 @@ mod ninjatip {
         InvalidAmount,
         /// Username is already registered as premium
         UsernameTaken,
-        /// Payment insufficient for premium registration
+        /// Payment insufficient for registration
         InsufficientPayment,
+        /// Transfer failed
+        TransferFailed,
     }
 
     impl NinjaTip {
@@ -141,7 +155,7 @@ mod ninjatip {
                 fee_enabled: false,
                 fee_rate: 50, // 0.5% default
                 accumulated_fees: 0,
-                premium_usernames: Mapping::default(),
+                username_registry: Mapping::default(),
                 // --- Gamification Init ---
                 jackpot_pool: 0,
                 last_jackpot_winner: None,
@@ -238,11 +252,29 @@ mod ninjatip {
             // --- Fund Distribution ---
             self.jackpot_pool = self.jackpot_pool.checked_add(jackpot_fee).unwrap_or(self.jackpot_pool);
 
-            // Send tip to stealth address
-            let stealth_address = Self::derive_stealth_address(&username, &salt);
-            let current_balance = self.balances.get(&stealth_address).unwrap_or(0);
-            let new_balance = current_balance.checked_add(tip_amount).unwrap_or(current_balance);
-            self.balances.insert(&stealth_address, &new_balance);
+            // Check if username is registered
+            if let Some(recipient) = self.username_registry.get(&username) {
+                // Direct Transfer
+                if self.env().transfer(recipient, tip_amount).is_err() {
+                     return Err(Error::TransferFailed);
+                }
+                 self.env().emit_event(DirectTipSent {
+                    username: username.clone(),
+                    amount: tip_amount,
+                    recipient,
+                    fee: jackpot_fee,
+                });
+            } else {
+                // Stealth Transfer (Legacy)
+                let stealth_address = Self::derive_stealth_address(&username, &salt);
+                let current_balance = self.balances.get(&stealth_address).unwrap_or(0);
+                let new_balance = current_balance.checked_add(tip_amount).unwrap_or(current_balance);
+                self.balances.insert(&stealth_address, &new_balance);
+                
+                // Emit TipReceived (Stealth) - reusing existing event for stealth flow
+                // Note: We don't emit TipReceived for direct tips to avoid confusion, or we could?
+                // Let's keep TipReceived for stealth only as per original design.
+            }
 
             // --- Streak Logic ---
             let (last_played, current_streak) = self.streaks.get(&caller).unwrap_or((0, 0));
@@ -496,22 +528,21 @@ mod ninjatip {
             self.streaks.get(&account).unwrap_or((0, 0))
         }
 
-        /// Register a premium username
-        /// Requires a fee (e.g., 100 ASTR)
+        /// Register a username
+        /// Requires a fee (e.g., 10 ASTR)
         #[ink(message, payable)]
-        pub fn register_premium_username(&mut self, username: String) -> Result<(), Error> {
+        pub fn register_username(&mut self, username: String) -> Result<(), Error> {
             // Validate username length
             if username.len() > 64 {
                 return Err(Error::UsernameTooLong);
             }
 
             // Check if already taken
-            if self.premium_usernames.contains(&username) {
+            if self.username_registry.contains(&username) {
                 return Err(Error::UsernameTaken);
             }
 
-            // Check payment (100 ASTR = 100 * 10^18)
-            // For simplicity in this demo, let's say 10 ASTR
+            // Check payment (10 ASTR = 10 * 10^18)
             let cost: Balance = 10_000_000_000_000_000_000; // 10 ASTR
             let transferred = self.env().transferred_value();
 
@@ -521,13 +552,13 @@ mod ninjatip {
 
             // Register
             let caller = self.env().caller();
-            self.premium_usernames.insert(&username, &caller);
+            self.username_registry.insert(&username, &caller);
 
             // Add to accumulated fees (owner profit)
             self.accumulated_fees = self.accumulated_fees.checked_add(transferred).unwrap_or(self.accumulated_fees);
 
             // Emit event
-            self.env().emit_event(PremiumRegistered {
+            self.env().emit_event(UsernameRegistered {
                 username,
                 owner: caller,
                 cost: transferred,
@@ -536,10 +567,10 @@ mod ninjatip {
             Ok(())
         }
 
-        /// Get the owner of a premium username
+        /// Get the owner of a registered username
         #[ink(message)]
-        pub fn get_premium_owner(&self, username: String) -> Option<AccountId> {
-            self.premium_usernames.get(&username)
+        pub fn get_username_owner(&self, username: String) -> Option<AccountId> {
+            self.username_registry.get(&username)
         }
 
         /// Derive stealth address from username and salt

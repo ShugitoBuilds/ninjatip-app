@@ -1,6 +1,6 @@
 {
   "source": {
-    "hash": "0x66089778f4108448f840016a876cca98ed49a27c4f01f3c12184a476b4690177",
+    "hash": "0x75f48cf8bc01a9e250315d3f41e8e39c5fde83334dba96f74c3ed4bbe19e4837",
     "language": "ink! 4.3.0",
     "compiler": "rustc 1.91.1",
     "build_info": {
@@ -254,9 +254,61 @@
           }
         ],
         "docs": [
-          "Event emitted when a premium username is registered"
+          "Event emitted when a username is registered"
         ],
-        "label": "PremiumRegistered"
+        "label": "UsernameRegistered"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "username",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 10
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "amount",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "recipient",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 2
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "fee",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "docs": [
+          "Event emitted when a direct tip is sent to a registered user"
+        ],
+        "label": "DirectTipSent"
       },
       {
         "args": [
@@ -753,10 +805,10 @@
         ],
         "default": false,
         "docs": [
-          " Register a premium username",
-          " Requires a fee (e.g., 100 ASTR)"
+          " Register a username",
+          " Requires a fee (e.g., 10 ASTR)"
         ],
-        "label": "register_premium_username",
+        "label": "register_username",
         "mutates": true,
         "payable": true,
         "returnType": {
@@ -766,7 +818,7 @@
           ],
           "type": 11
         },
-        "selector": "0x5562d224"
+        "selector": "0x87df127a"
       },
       {
         "args": [
@@ -782,9 +834,9 @@
         ],
         "default": false,
         "docs": [
-          " Get the owner of a premium username"
+          " Get the owner of a registered username"
         ],
-        "label": "get_premium_owner",
+        "label": "get_username_owner",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -794,7 +846,7 @@
           ],
           "type": 17
         },
-        "selector": "0xb66670ee"
+        "selector": "0x9cd370ca"
       }
     ]
   },
@@ -872,14 +924,14 @@
                 "root": {
                   "layout": {
                     "leaf": {
-                      "key": "0xfd509459",
+                      "key": "0x596fc2e4",
                       "ty": 2
                     }
                   },
-                  "root_key": "0xfd509459"
+                  "root_key": "0x596fc2e4"
                 }
               },
-              "name": "premium_usernames"
+              "name": "username_registry"
             },
             {
               "layout": {
@@ -1238,6 +1290,10 @@
               {
                 "index": 7,
                 "name": "InsufficientPayment"
+              },
+              {
+                "index": 8,
+                "name": "TransferFailed"
               }
             ]
           }

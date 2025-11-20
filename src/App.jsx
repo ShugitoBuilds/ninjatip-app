@@ -9,6 +9,7 @@ import { useAppStore } from './store';
 import WalletConnector from './components/WalletConnector';
 import GamePlayForm from './components/GamePlayForm';
 import BlockchainActivity from './components/BlockchainActivity'; // New import
+import UsernameRegistration from './components/UsernameRegistration'; // New import
 
 import JackpotDisplay from './components/JackpotDisplay'; // New import
 import StatusDisplay from './components/StatusDisplay'; // For global app status
@@ -73,6 +74,12 @@ function App() {
                 <>
                     {/* Game Play Form - prominently displayed */}
                     <GamePlayForm
+                        contract={contract}
+                        account={account}
+                    />
+
+                    {/* Username Registration */}
+                    <UsernameRegistration
                         contract={contract}
                         account={account}
                     />

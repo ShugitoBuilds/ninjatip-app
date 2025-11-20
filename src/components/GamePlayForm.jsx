@@ -16,6 +16,7 @@ function GamePlayForm({ contract, account }) {
     const [visualStatus, setVisualStatus] = useState('idle'); // 'idle', 'playing', 'won', 'lost'
     const [streak, setStreak] = useState(0);
     const [showAdvanced, setShowAdvanced] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(null); // null = unknown, true = registered, false = unregistered
 
     // Refs for audio elements
     const playSoundRef = useRef(null);
@@ -209,11 +210,35 @@ function GamePlayForm({ contract, account }) {
                     type="text"
                     placeholder="@username"
                     value={gameUsername}
-                    onChange={(e) => setGameUsername(e.target.value)}
+                    onChange={(e) => {
+                        setGameUsername(e.target.value);
+                        setIsRegistered(null); // Reset status on change
+                    }}
+                    onBlur={async () => {
+                        if (gameUsername && contract) {
+                            try {
+                                const { output } = await contract.query.getUsernameOwner(account.address, {}, gameUsername);
+                                if (output && output.isOk && output.asOk.isSome) {
+                                    setIsRegistered(true);
+                                } else {
+                                    setIsRegistered(false);
+                                }
+                            } catch (e) {
+                                console.error("Error checking username:", e);
+                            }
+                        }
+                    }}
                 />
-                <small style={{ display: 'block', marginTop: '5px', color: '#6b7280', fontSize: '0.8em' }}>
-                    * Tips currently fund the Jackpot Pool. Direct tipping coming soon!
-                </small>
+                {isRegistered === true && (
+                    <small style={{ display: 'block', marginTop: '5px', color: '#10b981', fontWeight: 'bold' }}>
+                        ✅ Registered! Tip goes directly to wallet.
+                    </small>
+                )}
+                {isRegistered === false && (
+                    <small style={{ display: 'block', marginTop: '5px', color: '#f59e0b' }}>
+                        🕵️ Unregistered. Tip goes to Stealth Safe (requires salt).
+                    </small>
+                )}
             </div>
             <div className="form-group">
                 <label>Amount to Play (ASTR)</label>
